@@ -1,4 +1,4 @@
-# Project Name
+# Offline JSON Pretty Printer
 
 Self contained, offline, JSON pretty print desktop app that works.
 
