@@ -22,12 +22,12 @@ Self contained, offline, JSON pretty print desktop app that works.
 Follow these steps to install the project:
 
 1. Clone the repository:
-2. `npm run build`
-3. Look in /dist directory for your executable
+2. Either `npm run build:mac` or `npm run build:win` or `npm run build:linux`
+3. Look in `/dist` directory for your executable
 
 ## Usage
 
-screenshots TBD
+_Screenshots TBD_
 
 ## Contributing
 
@@ -45,7 +45,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Jay Liew - [jay@haute.tech](mailto:jay@haute.tech)
+Jay Liew - [Haute Technologies, Inc](https://www.haute.tech)
 
 Project Link: [https://github.com/jayliew/offline-json-pretty-printer](https://github.com/jayliew/offline-json-pretty-printer)
 

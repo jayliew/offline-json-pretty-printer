@@ -21,6 +21,12 @@
     "mac": {
       "target": "dmg"
     },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    },
     "files": [
       "main.js",
       "index.html",
