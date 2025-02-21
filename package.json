@@ -1,0 +1,32 @@
+{
+  "name": "offline-json-pretty-printer",
+  "version": "1.0.0",
+  "author": "Jay Liew - Haute Technologies, Inc.",
+  "description": "Offline JSON Pretty Printer Electron app from haute.tech",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "tech.haute.offlinejsonprettyprinter",
+    "productName": "Offline JSON Pretty Printer",
+    "mac": {
+      "target": "dmg"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "preload.js"
+    ]
+  }
+}
