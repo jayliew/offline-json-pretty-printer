@@ -28,7 +28,7 @@ function updateOutput() {
     if (pythonChecked) {
         console.log('Python execution started');
         // window.api.executePython(`$(which python3) -c "print(input()*2)" <<< "${input.replace(/"/g, '\\"')}"`)
-        window.api.executePython(`$(which python3) -c "import pprint,re;exec('class D(object):\\n def __init__(self,n):self.n=n\\n def __call__(self,*a,**k):return(self.n,a,k)\\nclass S(dict):\\n def __missing__(self,k):return D(k)');d=eval(re.sub(r\\"'([^']*)'\\",lambda m:m.group(0).replace('\\n','\\\\n'),input()),{'__builtins__':{}},S());print(pprint.pformat(d,indent=2,width=80))" <<< "${input.replace(/"/g, '\\"')}"`)
+        window.api.executePython(`$(which python3) -c "import pprint,re;exec('class D(object):\\n def __init__(self,n):self.n=n;self.kwargs={}\\n def __call__(self,**kwargs):self.kwargs=kwargs;return self\\n def __repr__(self):return self.n+\\"(**\\"+str(self.kwargs)+\\")\\"\\nclass S(dict):\\n def __missing__(self,k):return D(k)');d=eval(re.sub(r\\"'([^']*)'\\",lambda m:m.group(0).replace(\\"\\n\\",\\"\\\\n\\"),input()),{\\"__builtins__\\":{}},S());print(pprint.pformat(d,indent=2,width=80))" <<< "${input.replace(/"/g, '\\"')}"`)
         // note: had to manually escape the double quotes in the first arg to -c
           .then(result => {
             const { error, stdout, stderr } = result;
