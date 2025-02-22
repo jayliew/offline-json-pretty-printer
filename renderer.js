@@ -15,13 +15,37 @@ function updateOutput() {
     const input = document.getElementById('jsonInput').value;
     const output = document.getElementById('output');
     const interpretNewlines = document.getElementById('interpretNewlines').checked;
+    const pythonChecked = document.getElementById('python-checkbox').checked;
     uniqueId = 0;
     
     if (!input.trim()) {
         output.innerHTML = '';
         return;
     }
+ 
+    console.log('hello');
+    // New branch for Python execution
+    if (pythonChecked) {
+        console.log('Python execution started');
+        window.api.executePython(`$(which python3) -c "${input.replace(/"/g, '\\"')}"`)
+          .then(result => {
+            const { error, stdout, stderr } = result;
+            if (error) {
+              console.log('Python execution error'+ error);
+              output.innerHTML = 'Error: ' + stderr;
+            } else {
+              console.log('Python execution success');
+              output.innerHTML = stdout;
+            }
+          })
+          .catch(err => {
+            output.innerHTML = 'Execution failed';
+          });
+        console.log('Python execution ended');
+        return;
+    }
 
+    // Existing JSON formatting logic
     try {
         const jsonObj = JSON.parse(input);
         lastJsonObj = jsonObj;

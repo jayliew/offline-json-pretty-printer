@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const { exec } = require('child_process');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -14,6 +15,19 @@ function createWindow() {
 
     win.loadFile('index.html');
 }
+
+ipcMain.handle('execute-python', async (event, command) => {
+  // Execute the Python command and return the result using a Promise.
+  return new Promise((resolve) => {
+    exec(command, (error, stdout, stderr) => {
+      resolve({
+        error: error ? error.message : null,
+        stdout,
+        stderr
+      });
+    });
+  });
+});
 
 app.whenReady().then(() => {
     createWindow();
