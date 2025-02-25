@@ -21,13 +21,14 @@ Self contained, offline, JSON pretty print desktop app that works.
 
 Follow these steps to install the project:
 
-1. Clone the repository:
-2. Either `npm run build:mac` or `npm run build:win` or `npm run build:linux`
-3. Look in `/dist` directory for your executable
+1. Clone the repository (`git clone`)
+2. Install packages: `npm i`
+3. Either `npm run build:mac` or `npm run build:win` or `npm run build:linux`
+4. Look in `/dist` directory for your executable
 
 ## Usage
 
-_Screenshots TBD_
+![Walkthrough demo of offline JSON pretty printer](offline-json-pretty-printer-demo.gif)
 
 ## Contributing
 
