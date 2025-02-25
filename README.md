@@ -2,7 +2,7 @@
 
 Self contained, offline, JSON pretty print desktop app that works.
 
-![Walkthrough demo of offline JSON pretty printer](URL_to_GIF)
+![Walkthrough demo of offline JSON pretty printer](offline-json-pretty-printer-demo.gif)
 
 ## Table of Contents
 
