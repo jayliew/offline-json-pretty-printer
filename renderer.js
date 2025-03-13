@@ -39,22 +39,46 @@ function formatJSON(obj, indentLevel, interpretNewlines) {
 
     if (typeof obj !== 'object' || obj === null) {
         let valueStr = JSON.stringify(obj);
-        if (interpretNewlines && typeof obj === 'string') {
-            valueStr = `"${obj.replace(/\n/g, '<br>')}"`;
+        if (typeof obj === 'string') {
+            // Remove quotes around the string
+            valueStr = valueStr.substring(1, valueStr.length - 1);
+            // Escape HTML special characters
+            valueStr = valueStr.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            
+            // Handle newlines based on checkbox state
+            if (interpretNewlines) {
+                valueStr = valueStr.replace(/\\n/g, '<br />');
+            }
+            
+            // Add quotes back
+            valueStr = `"${valueStr}"`;
         }
         return `<span class="json-value">${valueStr}</span>`;
     }
 
     for (const [key, value] of Object.entries(obj)) {
         const currentId = uniqueId++;
-        html += `${indent}<span class="json-key" data-id="${currentId}">${key}</span>: `;
+        // Escape HTML special characters in keys
+        const safeKey = key.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        html += `${indent}<span class="json-key" data-id="${currentId}">${safeKey}</span>: `;
         
         if (typeof value === 'object' && value !== null) {
             html += `\n${formatJSON(value, indentLevel + 1, interpretNewlines)}`;
         } else {
             let valueStr = JSON.stringify(value);
-            if (interpretNewlines && typeof value === 'string') {
-                valueStr = `"${value.replace(/\n/g, '<br>')}"`;
+            if (typeof value === 'string') {
+                // Remove quotes around the string
+                valueStr = valueStr.substring(1, valueStr.length - 1);
+                // Escape HTML special characters
+                valueStr = valueStr.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                
+                // Handle newlines based on checkbox state
+                if (interpretNewlines) {
+                    valueStr = valueStr.replace(/\\n/g, '<br />');
+                }
+                
+                // Add quotes back
+                valueStr = `"${valueStr}"`;
             }
             html += `<span class="json-value" data-id="${currentId}">${valueStr}</span>\n`;
         }
